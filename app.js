@@ -10,7 +10,7 @@ const port=process.env.PORT || 3000;
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 const corsOptions = {
-  origin: '*', 
+  origin: `${process.env.FRONT_END_URL}`, 
   credentials: true,               
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']
@@ -23,13 +23,17 @@ const connectDB=require('./util/connectDB')
 const cookieParser = require('cookie-parser');
 
 
-
 const notesRoutes=require('./routes/notesApi')
 const userRoutes=require('./routes/userApi')
 
 
 connectDB();
 app.use(cookieParser());
+
+
+app.get('/',(req,res)=>{
+    res.send("Welcome to Notes API")
+});
 
 
 
