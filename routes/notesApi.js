@@ -10,6 +10,7 @@ const authMiddleware = require("../util/authMiddleware");
 
 
 router.get('/wake',(req,res)=>{
+    console.log("it is hitted")
 res.send("yes i am awake")
 })
 
