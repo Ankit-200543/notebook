@@ -136,6 +136,36 @@ router.put('/updateNotes/:id', authMiddleware, async (req, res) => {
         })
     }
 })
+router.delete('/deleteNotes/:id', authMiddleware, async (req, res) => {
+    const noteId = req.params.id;
+    const userEmail = req.user.email;   
+    try {
+        const note = await Note.findById(noteId);
+        if (!note) {
+            return res.status(404).json({   
+                success: false,
+                message: "Note not found"
+            });
+        }   
+        if (note.user !== userEmail) {
+            return res.status(403).json({
+                success: false, 
+                message: "You are not authorized to delete this note"
+            });
+        }
+        await Note.findByIdAndDelete(noteId);
+        res.status(200).json({
+            success: true,
+            message: "Note deleted successfully"
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: "Internal server error",
+            error: error.message
+        });
+    }
+});
 
 
 module.exports=router;
