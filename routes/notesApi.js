@@ -9,7 +9,9 @@ const authMiddleware = require("../util/authMiddleware");
 
 
 
-
+router.get('/wake',(req,res)=>{
+res.send("yes i am awake")
+})
 
 
 router.post('/createNotes', authMiddleware, async (req,res)=>{
