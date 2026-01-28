@@ -43,7 +43,6 @@ router.post('/createUser', async (req, res) => {
 router.post('/login', async (req, res) => {
     try {
         const { email, password } = req.body;
-        console.log("it is hitted")
         const userPresent = await User.findOne({ email });
         if (!userPresent) {
             return res.status(404).json({ success: false, message: "User not found" });
