@@ -10,7 +10,7 @@ const port=process.env.PORT || 3000;
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 const corsOptions = {
-  origin: 'https://bejewelled-cascaron-e58493.netlify.app/', 
+  origin: 'https://bejewelled-cascaron-e58493.netlify.app', 
   credentials: true,               
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']
